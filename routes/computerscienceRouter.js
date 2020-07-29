@@ -1,14 +1,14 @@
 var express = require('express');
-var Physic = require('../db/physicSchema')
+var Computer = require('../db/computerscienceSchema')
 var router = express.Router();
 
 /* GET home page. */
 
 router.post('/', function(req, res, next) {
-    var physic = new Physic({mul:req.body.mul,question: req.body.question,
+    var computer = new Computer({mul:req.body.mul,question: req.body.question,
         as: req.body.as, sa: req.body.sa}
-        )
-    physic.save(function(err, obj){
+    )
+    computer.save(function(err, obj){
         if(err){
             console.error(err);
             res.status(400).send({success: false, msg: "Error"})
@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
     // Image,
     // rating,
     // }]
-    Physic.find(function(err,docs){
+    Computer.find(function(err,docs){
         if(err){
             res.status(500).send({success: false, msg: "Server error"})
         }
