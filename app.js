@@ -8,6 +8,7 @@ const cors = require('cors');
 var subjectRouter = require('./routes/subjectRouter')
 var physicRouter = require('./routes/physicRouter')
 var computerRouter = require('./routes/computerscienceRouter')
+var userRouter     = require('./routes/signin_signup')
 require('dotenv').config();
 var app = express();
 const server = require('http').createServer(app);
@@ -21,9 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/creatUser', userRouter)
 app.use('/subject', subjectRouter)
 app.use('/physic', physicRouter)
-app.use('/computerscience', computerRouter)
+app.use('/computer', computerRouter)
 console.log(process.env.USER_NAME_DB,process.env.PASSWORD_DB)
 
 mongoose.connect(`mongodb+srv://${process.env.USER_NAME_DB}:${process.env.PASSWORD_DB}@cluster0-lszdj.mongodb.net/test?retryWrites=true&w=majority`)
