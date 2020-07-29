@@ -4,6 +4,9 @@ var router = express.Router();
 
 /* GET home page. */
 
+
+
+
 router.post('/', function(req, res, next) {
     var computer = new Computer({mul:req.body.mul,question: req.body.question,
         as: req.body.as, sa: req.body.sa}
