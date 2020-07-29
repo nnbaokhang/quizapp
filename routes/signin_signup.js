@@ -67,17 +67,13 @@ router.post('/score', function(req, res, next) {
 
 router.get('/score', function(req, res, next) {
 
-    console.log(req.query.username)
-    console.log(req.query.password)
 
-    var user = new User({username:req.query.username, password: req.query.password})
-
-    user.save(function(err, obj){
+    User.findOne({username: req.query.username},function(err, obj){
         if(err){
             console.error(err);
             res.status(400).send({success: false, msg: "Error"})
         } else if(obj){
-            res.status(200).send({success: true, msg: " New user is added to our database"})
+            res.status(200).send({score:obj.score})
         }
         else{
             res.status(200).send({success: false, msg: + "New user can't save"})
