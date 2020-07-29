@@ -5,7 +5,11 @@ var router = express.Router();
 /* GET home page. */
 
 router.post('/', function(req, res, next) {
-    var user = new User({username:req.body.username, password: req.body.password})
+
+    console.log(req.query.username)
+    console.log(req.query.password)
+
+    var user = new User({username:req.query.username, password: req.query.password})
 
     user.save(function(err, obj){
         if(err){
@@ -21,8 +25,6 @@ router.post('/', function(req, res, next) {
 });
 router.get('/', function(req, res, next) {
 
-    console.log(req.query.username)
-    console.log(req.query.password)
     User.findOne({username:req.query.username,password:req.query.password},function(err,docs){
         if(err){
             res.status(500).send({success: false, msg: "Server error"})
