@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/creatUser', userRouter)
 app.use('/subject', subjectRouter)
 app.use('/physic', physicRouter)
-app.use('/computer', computerRouter)
+app.use('/computerscience', computerRouter)
 console.log(process.env.USER_NAME_DB,process.env.PASSWORD_DB)
 
 mongoose.connect(`mongodb+srv://${process.env.USER_NAME_DB}:${process.env.PASSWORD_DB}@cluster0-lszdj.mongodb.net/test?retryWrites=true&w=majority`)
