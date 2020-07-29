@@ -21,25 +21,22 @@ router.post('/', function(req, res, next) {
     })
 });
 router.get('/', function(req, res, next) {
-    //Somehow response back the list of subject item
-    //[{
-    // Physic
-    // Image
-    // rating
-    // },
-    // {
-    // Computer Science,
-    // Image,
-    // rating,
-    // }]
+
     Physic.find(function(err,docs){
         if(err){
             res.status(500).send({success: false, msg: "Server error"})
         }
         else{
             console.log(docs)
+            let docArray = Object.entries(docs)
+            let index = Math.random()% docArray.length;
+            if(index + 10 <= docArray.length && index - 10 >= 0){
+                res.status(200).send({"subject": docArray.slice(index,10 + 1)})
+            }
             //I can pick 10 and return here but for now let return all of it and display
-            res.status(200).send({"subject":docs})
+            else {
+                res.status(200).send({"subject": docArray.slice(0,10 + 1)})
+            }
         }
     })
 
