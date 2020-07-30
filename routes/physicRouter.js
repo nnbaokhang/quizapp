@@ -30,12 +30,12 @@ router.get('/', function(req, res, next) {
             console.log(docs)
             let docArray = Object.entries(docs)
             let index = Math.random()% docArray.length;
-            if(index + 10 <= docArray.length && index - 10 >= 0){
-                res.status(200).send({"subject": docArray.slice(index,10 + 1)})
+            if(index + 5 <= docArray.length && index - 5 >= 0){
+                res.status(200).send({"subject": docArray.slice(index,5 )})
             }
             //I can pick 10 and return here but for now let return all of it and display
             else {
-                res.status(200).send({"subject": docArray.slice(0,10 + 1)})
+                res.status(200).send({"subject": docArray.slice(0,5)})
             }
         }
     })
